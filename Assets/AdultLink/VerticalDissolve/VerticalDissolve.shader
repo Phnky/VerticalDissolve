@@ -25,7 +25,7 @@ Shader "AdultLink/VerticalDissolve"
 		_Wave2amplitude("Wave2 amplitude", Range( 0 , 1)) = 0
 		_Wave2Frequency("Wave2 Frequency", Range( 0 , 50)) = 0
 		_Wave2offset("Wave 2 offset", Float) = 0
-		_Albedo("Albedo", 2D) = "black" {}
+		_MainTex("Albedo", 2D) = "black" {}
 		_Normal("Normal", 2D) = "bump" {}
 		_Emission("Emission", 2D) = "white" {}
 		[HDR]_Basecolor("Base color", Color) = (0,0,0,1)
@@ -83,7 +83,7 @@ Shader "AdultLink/VerticalDissolve"
 		uniform sampler2D _Normal;
 		uniform float2 _Maintiling;
 		uniform float2 _Mainoffset;
-		uniform sampler2D _Albedo;
+		uniform sampler2D _MainTex;
 		uniform float _Enablerimlight;
 		uniform float4 _Rimlightcolor;
 		uniform float _Rimlightbias;
@@ -187,7 +187,7 @@ Shader "AdultLink/VerticalDissolve"
 			float2 UVTilingOffset290 = uv_TexCoord288;
 			float3 Normal265 = UnpackNormal( tex2D( _Normal, UVTilingOffset290 ) );
 			o.Normal = Normal265;
-			float4 Albedo262 = tex2D( _Albedo, UVTilingOffset290 );
+			float4 Albedo262 = tex2D( _MainTex, UVTilingOffset290 );
 			o.Albedo = Albedo262.rgb;
 			float3 ase_worldPos = i.worldPos;
 			float3 ase_worldViewDir = normalize( UnityWorldSpaceViewDir( ase_worldPos ) );
@@ -479,7 +479,7 @@ Node;AmplifyShaderEditor.SamplerNode;253;707.2645,-1836.379;Float;True;Property;
 Node;AmplifyShaderEditor.SwitchByFaceNode;157;2225.912,-2191.213;Float;False;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;251;682.8015,-2200.197;Float;True;Property;_Specular;Specular;40;0;Create;True;0;0;False;0;None;None;True;0;False;black;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;252;696.9806,-2617.098;Float;True;Property;_Normal;Normal;22;0;Create;True;0;0;False;0;None;None;True;0;False;bump;Auto;True;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;231;703.3547,-3013.628;Float;True;Property;_Albedo;Albedo;21;0;Create;True;0;0;False;0;None;None;True;0;False;black;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;231;703.3547,-3013.628;Float;True;Property;_MainTex;Albedo;21;0;Create;True;0;0;False;0;None;None;True;0;False;black;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;222;-931.0853,-453.5736;Float;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;125;634.4964,-444.7756;Float;False;121;OpacityMask;0;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;263;659.3857,-899.0503;Float;False;262;Albedo;0;1;COLOR;0
